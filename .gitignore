@@ -1,4 +1,5 @@
 *.pdf
 !csf342/CSF342P1/*.pdf
 !CSF372/CSF372T3/*.pdf
-
+*.autosave.xopp
+*.xopp~
