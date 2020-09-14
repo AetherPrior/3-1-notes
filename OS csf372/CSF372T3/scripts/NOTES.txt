@@ -1,0 +1,8 @@
+cd is a program, and whatever I pass to it is a command line argument
+	- We're going too slow
+	- We have done this in cs f111
+
+echo $? - outputs the return value of last executed program in shell
+doing echo $? twice, will output the return address of last exec'd program, and also the return value of echo $?, which is zero
+scripts have a small footprint compared to binaries and can execute simple jobs - you can batch jobs.
+return values are between 0 to 255
