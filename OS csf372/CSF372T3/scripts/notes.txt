@@ -1,0 +1,65 @@
+OS Tuts
+$# gives number of args in bash, equi to argc in C
+$@ gives list of args, eq to argv in C
+
+out=`.progname.out $1`   //$1 has first command line argument
+echo "$out"    //used to run C prog from bash
+echo $?      //returns return value of last program (if C prog returns 100 it will be 100, generally it is 0)
+
+ps shows processes i think
+ -ef argument for something, pipe with grep using '|grep xxx' to search for xxx
+
+getpid() gets self process id
+getppid() gets parent's proc id
+
+execlp is used to fork bash to call the linux commands inside C   eg: ececlp("ls", "ls", "-la", NULL);
+arguments like: ("command", "personalized name", "arguments", NULL)
+
+whenever we use execlp or type any binary on bash, bash forks itself, replaces itself with that binary and runs.
+
+
+creating pipe: int pfds[2];
+if(pipe(pfds)==-1) {error occured}
+
+writing to pipe: write(pfds[1], "data", <sizeof(data)+1>);
+
+reading from pipe: create a buffer using 
+char buf[30];
+read(pfds[0], buf, <sizeof(data)+1>);
+data stored in buf
+
+the pipe function maps stdin to pfds[0] and stdout to pfds[1]
+on success 0 is returned else -1
+
+header files used: stdio, stdlib, errno, unistd, sys/wait
+
+close(pfds[0]) functions blocks the read end of a pipe, [1] would block write end. helps in avoiding mistakes like reading something it wrote to pipe itself
+
+pid_t is like integer, but used for storing pid's
+
+dup2(pfds[1], 1) duplicates end of pipe to stdout
+using this and fork, the pipe thing used in terminal can be simulated. check SS
+
+the prog that was SS uses ls and makes it write into pipe instead of stdout, while wc reads from pipe instead of stdin, as we used dup2 to map stdout and stdin to pipe ends
+
+wc gives word count from stdin
+--------------------------------------------------
+sys/ipc.h for ipc, sys/msg.h used for message passing
+
+struct my_msgbuf {
+long mtype;
+char mtext[200];
+};
+
+ftok
+msgget
+msgctl
+msgflg
+msgrcv
+check man and SS for above three functions
+
+whatever writer writes, reader program reads :o
+
+sys/shm for shared memory
+
+functions: shmget, shmat,
