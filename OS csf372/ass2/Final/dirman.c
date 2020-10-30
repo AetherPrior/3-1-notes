@@ -17,20 +17,17 @@ int pfds[2];
 char buf[1001];
 void ls(char *dirname)
 {
-    //open(pfds[1]);
     close(pfds[0]);
     for (int i = 0; i <= size; i++)
     {
         if (dirname != NULL)
         {
-            //char *newdir;
             char newdir[100];
             char *nextdir = newdir + 1;
             strcpy(nextdir, dirname);
             newdir[0] = '/';
             newdir[strlen(newdir) + 1] = '\0';
             newdir[strlen(newdir)] = '/';
-            //newdir = strcat(strcat("/", dirname), "/");
             if (strstr(filarr[i].name, newdir) != NULL)
             {
                 if (write(pfds[1], filarr[i].name, strlen(filarr[i].name)) == -1)
@@ -41,7 +38,6 @@ void ls(char *dirname)
                 {
                     perror("rip pipe: ");
                 };
-                // fflush(stdout);
             }
         }
         else
@@ -114,7 +110,6 @@ void ronly(char *dirname)
 }
 void search(char *name)
 {
-    //open(pfds[1]);
     close(pfds[0]);
     for (int i = 0; i <= size; i++)
     {
@@ -143,7 +138,6 @@ void add_entry(char *perms, char *filename)
 void add_handler(char *cmd)
 {
     char *token = strtok(cmd, " "), *token2 = strtok(NULL, " ");
-    //token2[strlen(token2) - 1] = '\0';
     add_entry(token, token2);
 }
 void cmdhandler(char *cmd)
@@ -151,12 +145,6 @@ void cmdhandler(char *cmd)
     char *token = strtok(cmd, " ");
     char *token2 = strtok(NULL, " ");
     int pid = -123;
-    /*
-    if (token2 != NULL && strcmp(token, "chmod"))
-    {
-        token2[strlen(token2) - 1] = '\0';
-    }
-    */
     if (!strncmp(token, "ls", 2))
     {
         if (pipe(pfds) == -1)
@@ -192,7 +180,6 @@ void cmdhandler(char *cmd)
     else if (!strcmp(token, "chmod"))
     {
         char *name = strtok(NULL, " ");
-        // name[strlen(name) - 1] = '\0';
         int p = atoi(token2);
         chmod(name, p);
     }
