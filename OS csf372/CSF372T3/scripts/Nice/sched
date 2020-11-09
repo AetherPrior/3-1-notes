@@ -1,0 +1,31 @@
+
+
+
+
+First 15MINS rip
+
+
+
+
+
+SCHED_FIFO
+SCHED_RR
+SCHED_OTHER - CFS
+SCHED_BATCH SCHED_IDLE
+
+
+
+https://askubuntu.com/questions/656771/process-niceness-vs-priority
+
+renice - changes the nice value 
+renice -n <value> -p <process_id>
+
+chrt -m shows the min and max
+chrt -p <ID> shows the policy and priority
+chrt -o/*<--this is the scheduler*/ -p <priority> <pid>
+
+each process has its own scheduler
+	-  But how does that work wtf
+	-  Maybe each algo has its own datastructure
+
+
