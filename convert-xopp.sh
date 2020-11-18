@@ -1,9 +1,7 @@
 #!/bin/bash
 for file in *xopp;
 do
-	filorig=$file;
-	fil=$(echo $file|rev|cut -c 6-|rev);
-	xournalpp --create-pdf "${fil}.pdf" "$filorig";
+	xournalpp -p "$(echo $file|rev|cut -c 6-|rev).pdf" "$file";
 done;	
 if [ ! -d "./pdfs" ]
 then
