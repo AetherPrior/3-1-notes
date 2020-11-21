@@ -1,0 +1,6 @@
+Hello world!
+The reason we're writing something inside is because if there's nothing in the memory mapped region, 
+you'll not get any output and it'll try to access everything until a bus error happens.
+bus errors happen due to an invalid address, when the address doesn't even exist
+page fault is about when the page isn't in main memory
+

@@ -1,0 +1,7 @@
+meminfo - give all memomry information
+visualize using htop
+swap space (no set formula to set it, just convention)
+mem, kmem, etc. 
+gparted
+memory mapped to every process is in /proc/<pid>/maps
+
